@@ -4,7 +4,7 @@ pipeline {
     agent any
     
     environment {
-        // Update the main app image name to match the deployment file 
+        // Update the main app image name to match the deployment file
         DOCKER_IMAGE_NAME = 'pruthviraj7/easyshop-app'
         DOCKER_MIGRATION_IMAGE_NAME = 'pruthviraj7/easyshop-migration'
         DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
