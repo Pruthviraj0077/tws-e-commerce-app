@@ -107,7 +107,7 @@ pipeline {
             }
         }
         
-        // Add this new stage remove this lines 
+        // Add this new stage 
         stage('Update Kubernetes Manifests') {
             steps {
                 script {
