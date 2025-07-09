@@ -11,6 +11,13 @@ pipeline {
         GITHUB_CREDENTIALS = credentials('github-credentials')
         GIT_REPO = "https://github.com/Pruthviraj0077/tws-e-commerce-app.git"
         GIT_BRANCH = "master"
+
+        SONARQUBE_ENV = 'SonarLocal'
+        SONAR_SCANNER = 'DefaultScanner'
+    }
+
+    tools {
+        sonarQubeScanner "${SONAR_SCANNER}"
     }
     
     stages {
@@ -59,7 +66,24 @@ pipeline {
                 }
             }
         }
-        
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_AUTH_TOKEN')]) {
+                        withSonarQubeEnv("${SONARQUBE_ENV}") {
+                            sh '''
+                                sonar-scanner \
+                                  -Dsonar.projectKey=easyshop \
+                                  -Dsonar.sources=. \
+                                  -Dsonar.host.url=http://54.154.110.71:9000 \
+                                  -Dsonar.login=$SONAR_AUTH_TOKEN
+                            '''
+                        }
+                    }
+                }
+            }
+        }
+
         stage('Run Unit Tests') {
             steps {
                 script {
