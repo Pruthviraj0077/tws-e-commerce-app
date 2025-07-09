@@ -63,9 +63,9 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-             tools {
-                sonarQubeScanner 'DefaultScanner' // declared inside stage (✅ correct)
-            }
+            //  tools {
+            //     sonarQubeScanner 'DefaultScanner' // declared inside stage (✅ correct)
+            // }
             steps {
                 script {
                     withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_AUTH_TOKEN')]) {
