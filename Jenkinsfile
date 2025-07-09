@@ -15,10 +15,6 @@ pipeline {
         SONARQUBE_ENV = 'SonarLocal'
         SONAR_SCANNER = 'DefaultScanner'
     }
-
-    tools {
-        sonarQubeScanner "${SONAR_SCANNER}"
-    }
     
     stages {
         stage('Cleanup Workspace') {
@@ -67,6 +63,9 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
+             tools {
+                sonarQubeScanner 'DefaultScanner' // declared inside stage (✅ correct)
+            }
             steps {
                 script {
                     withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_AUTH_TOKEN')]) {
