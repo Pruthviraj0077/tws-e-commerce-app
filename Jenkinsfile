@@ -95,7 +95,7 @@ pipeline {
         stage('Security Scan with Trivy') {
             steps {
                 script {
-                    // Create directory for results 
+                    // Create directory for results remove 
                   
                     trivy_scan()
                     
