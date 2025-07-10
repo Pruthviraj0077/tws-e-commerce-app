@@ -74,7 +74,7 @@ pipeline {
                                 sonar-scanner \
                                   -Dsonar.projectKey=easyshop \
                                   -Dsonar.sources=. \
-                                  -Dsonar.host.url=http://54.154.110.71:9000 \
+                                  -Dsonar.host.url=http://52.49.209.46:9000 \
                                   -Dsonar.login=$SONAR_AUTH_TOKEN
                             '''
                         }
